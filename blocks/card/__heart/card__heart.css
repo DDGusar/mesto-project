@@ -1,0 +1,14 @@
+.card__heart {
+  background-image: url(../../../images/card-heart.svg);
+  width: 22px;
+  height: 19px;
+  flex-shrink: 0;
+  /* background-size: 22px 19px; */
+  background-position: center;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+}
+
+.card__heart:hover {
+  opacity: 0.5;
+}

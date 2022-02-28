@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mesto</title>
+    <meta
+      name="description"
+      content="проект 3 на Яндекс Практикуме. Использование форм."
+    />
+    <meta name="keywords" content="html, css" />
+    <meta name="author" content="Дарья Гусар" />
+    <link rel="stylesheet" href="pages/index.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <img src="images/logo.svg" alt="логотип" class="header__logo" />
+      </header>
+      <main class="content">
+        <section class="profile">
+          <img src="images/Avatar.jpg" alt="аватар" class="profile__avatar" />
+          <div class="profile__info">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <form action="" class="profile__edit-button"></form>
+            <p class="profile__subtitle">Исследователь океана</p>
+          </div>
+          <form action="" class="profile__add-button"></form>
+        </section>
+        <section class="cards">
+          <div class="card">
+            <img
+              src="images/card-karachaevsk.jpg"
+              alt="Карачаевск"
+              class="card__image"
+            />
+            <div class="card__caption">
+              <h2 class="card__title">Карачаевск</h2>
+              <div class="card__heart"></div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="images/card-elbrus.jpg"
+              alt="Эльбрус"
+              class="card__image"
+            />
+            <div class="card__caption">
+              <h2 class="card__title">Эльбрус</h2>
+              <div class="card__heart"></div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="images/card-dombai.jpg"
+              alt="Домбай"
+              class="card__image"
+            />
+            <div class="card__caption">
+              <h2 class="card__title">Домбай</h2>
+              <div class="card__heart card__heart_active"></div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="images/card-elbrus.jpg"
+              alt="Эльбрус"
+              class="card__image"
+            />
+            <div class="card__caption">
+              <h2 class="card__title">Эльбрус</h2>
+              <div class="card__heart"></div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="images/card-dombai.jpg"
+              alt="Домбай"
+              class="card__image"
+            />
+            <div class="card__caption">
+              <h2 class="card__title">Домбай</h2>
+              <div class="card__heart"></div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="images/card-karachaevsk.jpg"
+              alt="Карачаевск"
+              class="card__image"
+            />
+            <div class="card__caption">
+              <h2 class="card__title">Карачаево-Черкессия</h2>
+              <div class="card__heart"></div>
+            </div>
+          </div>
+        </section>
+        <section class="popup popup_opened">
+          <div class="popup__container">
+            <img
+              src="images/close-icon.svg"
+              alt="закрыть форму"
+              class="popup__cross"
+            />
+            <form action="" class="popup__form">
+              <h3 class="popup__title">Редактировать профиль</h3>
+              <input type="text" class="popup__text" value="Жак-Ив Кусто" />
+              <input
+                type="text"
+                class="popup__text"
+                value="Исследователь океана"
+              />
+              <button type="submit" class="popup__button">Сохранить</button>
+            </form>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">© 2022 Mesto Russia</p>
+      </footer>
+    </div>
+  </body>
+</html>
