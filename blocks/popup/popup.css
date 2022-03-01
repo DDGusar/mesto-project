@@ -10,10 +10,3 @@
   bottom: 0;
   left: 0;
 }
-
-@media screen and (max-width: 600px) {
-  .popup {
-    align-items: flex-start;
-    margin-top: 87px;
-  }
-}
