@@ -9,6 +9,8 @@
   box-sizing: border-box;
   border: 0;
   background-color: #fff;
+  opacity: 1;
+  transition: opacity 0.5s linear;
 }
 
 .card__heart:hover {

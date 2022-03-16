@@ -8,6 +8,8 @@
   background-position: center;
   background-repeat: no-repeat;
   background-color: #000;
+  opacity: 1;
+  transition: opacity 0.5s linear;
 }
 .profile__add-button:hover {
   opacity: 0.6;
