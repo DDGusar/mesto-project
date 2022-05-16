@@ -21,6 +21,7 @@ const cardTemplate = document.querySelector("#card-template").content;
 const picImgPopup = imagePopup.querySelector(".popup__image");
 const cardCaption = cardPopup.querySelector("input[name = card-title]");
 const cardImage = cardPopup.querySelector("input[name = img-source]");
+const popups = document.querySelectorAll(".popup");
 const initialCards = [
   {
     name: "Архыз",
@@ -121,4 +122,17 @@ formCard.addEventListener("submit", handleCardFormSubmit);
 
 initialCards.forEach(function (item) {
   addCard(item.name, item.link);
+});
+popups.forEach(function (item) {
+  item.addEventListener("click", function (evt) {
+    if (evt.target.classList.contains("popup")) {
+      // console.log(evt.target);
+      closePopup(evt.target);
+    }
+  });
+});
+document.addEventListener("keydown", function (evt) {
+  if (evt.key === "Escape") {
+    closePopup(evt.target.querySelector(".popup_opened"));
+  }
 });
