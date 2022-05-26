@@ -1,3 +1,4 @@
+import "../pages/index.css";
 const container = document.querySelector(".page");
 const profilePopup = container.querySelector(".profile-popup");
 const cardPopup = container.querySelector(".card-popup");
@@ -136,3 +137,80 @@ document.addEventListener("keydown", function (evt) {
     closePopup(evt.target.querySelector(".popup_opened"));
   }
 });
+
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add("popup__text_type_error");
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add("popup__text-error_active");
+};
+
+const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove("popup__text_type_error");
+  errorElement.classList.remove("popup__text-error_active");
+  errorElement.textContent = "верно";
+};
+// Функция принимает массив полей
+
+const hasInvalidInput = (inputList) => {
+  // проходим по этому массиву методом some
+  return inputList.some((inputElement) => {
+    // Если поле не валидно, колбэк вернёт true
+    // Обход массива прекратится и вся функция
+    // hasInvalidInput вернёт true
+
+    return !inputElement.validity.valid;
+  });
+};
+// Функция принимает массив полей ввода
+// и элемент кнопки, состояние которой нужно менять
+
+const toggleButtonState = (inputList, buttonElement) => {
+  // Если есть хотя бы один невалидный инпут
+  if (hasInvalidInput(inputList)) {
+    // сделай кнопку неактивной
+    buttonElement.classList.add("popup__button_inactive");
+  } else {
+    // иначе сделай кнопку активной
+    buttonElement.classList.remove("popup__button_inactive");
+  }
+};
+
+const checkInputValidity = (formElement, inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+};
+
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll(".popup__text"));
+  const buttonElement = formElement.querySelector(".popup__button");
+  toggleButtonState(inputList, buttonElement);
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener("input", function () {
+      checkInputValidity(formElement, inputElement);
+      toggleButtonState(inputList, buttonElement);
+    });
+  });
+};
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll(".popup__form"));
+  formList.forEach((formElement) => {
+    formElement.addEventListener("submit", function (evt) {
+      evt.preventDefault();
+    });
+    const fieldsetList = Array.from(
+      formElement.querySelectorAll(".popup__form-set")
+    );
+
+    fieldsetList.forEach((fieldSet) => {
+      setEventListeners(fieldSet);
+    });
+  });
+};
+
+enableValidation();
