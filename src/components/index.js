@@ -1,4 +1,4 @@
-import "./index.css";
+import "../index.css";
 import {
   profilePopup,
   cardPopup,
@@ -13,19 +13,11 @@ import {
   popups,
   handleProfileFormSubmit,
   handleCardFormSubmit,
-} from "./components/modal.js";
+} from "./modal.js";
 
-import { enableValidation } from "./components/validate.js";
-import { initialCards } from "./components/card.js";
-import { addCard, closePopup, openPopup } from "./components/utils.js";
-
-document.addEventListener("keydown", function (evt) {
-  if (evt.key === "Escape") {
-    if (document.querySelector(".popup_opened")) {
-      closePopup(evt.target.querySelector(".popup_opened"));
-    }
-  }
-});
+import { enableValidation } from "./validate.js";
+import { initialCards } from "./card.js";
+import { addCard, closePopup, openPopup } from "./utils.js";
 
 profileEditBtn.addEventListener("click", function () {
   openPopup(profilePopup);
