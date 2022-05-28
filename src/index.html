@@ -11,16 +11,23 @@
     />
     <meta name="keywords" content="html, css" />
     <meta name="author" content="Дарья Гусар" />
-    <link rel="stylesheet" href="pages/index.css" />
   </head>
   <body>
     <div>
       <header class="header">
-        <img src="images/logo.svg" alt="логотип" class="header__logo" />
+        <img
+          src="<%=require('./images/logo.svg')%>"
+          alt="логотип"
+          class="header__logo"
+        />
       </header>
       <main class="content">
         <section class="profile">
-          <img src="images/Avatar.jpg" alt="аватар" class="profile__avatar" />
+          <img
+            src="<%=require('./images/Avatar.jpg')%>"
+            alt="аватар"
+            class="profile__avatar"
+          />
           <div class="profile__info">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
             <button
@@ -49,20 +56,32 @@
             aria-label="закрыть форму"
           ></button>
 
-          <form name="profile-data" class="popup__form">
+          <form name="profile-data" class="popup__form" novalidate>
             <h3 class="popup__title">Редактировать профиль</h3>
             <input
               type="text"
+              id="name-input"
               class="popup__text"
               name="profile-title"
               value="Жак-Ив Кусто"
+              minlength="2"
+              maxlength="40"
+              required
             />
+            <span class="popup__text-error name-input-error">Текст ошибки</span>
             <input
               type="text"
+              id="description-input"
               class="popup__text"
               name="profile-description"
               value="Исследователь океана"
+              minlength="2"
+              maxlength="200"
+              required
             />
+            <span class="popup__text-error description-input-error"
+              >Текст ошибки</span
+            >
             <button
               type="submit"
               class="popup__button"
@@ -81,20 +100,30 @@
             aria-label="закрыть форму"
           ></button>
 
-          <form name="card-data" class="popup__form">
+          <form name="card-data" class="popup__form" novalidate>
             <h3 class="popup__title">Новое место</h3>
             <input
               type="text"
+              id="place-input"
               class="popup__text"
               name="card-title"
               placeholder="Название"
+              minlength="2"
+              maxlength="30"
+              required
             />
+            <span class="popup__text-error place-input-error"
+              >Текст ошибки</span
+            >
             <input
-              type="text"
+              type="url"
+              id="link-input"
               class="popup__text"
               name="img-source"
               placeholder="Ссылка на картинку"
+              required
             />
+            <span class="popup__text-error link-input-error">Текст ошибки</span>
             <button
               type="submit"
               class="popup__button"
@@ -122,7 +151,7 @@
         <article class="card">
           <img src="#" alt="" class="card__image" />
           <img
-            src="images/trash.svg"
+            src="<%=require('./images/trash.svg')%>"
             alt="удалить карточку"
             class="card__trash"
           />
@@ -137,6 +166,5 @@
         </article>
       </template>
     </div>
-    <script src="scripts/index.js"></script>
   </body>
 </html>
