@@ -21,7 +21,9 @@ import { addCard, closePopup, openPopup } from "./components/utils.js";
 
 document.addEventListener("keydown", function (evt) {
   if (evt.key === "Escape") {
-    closePopup(evt.target.querySelector(".popup_opened"));
+    if (document.querySelector(".popup_opened")) {
+      closePopup(evt.target.querySelector(".popup_opened"));
+    }
   }
 });
 

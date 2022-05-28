@@ -11,29 +11,21 @@ const hideInputError = (formElement, inputElement, obj) => {
   errorElement.classList.remove(obj.errorClass);
   errorElement.textContent = "верно";
 };
-// Функция принимает массив полей
 
 const hasInvalidInput = (inputList) => {
-  // проходим по этому массиву методом some
   return inputList.some((inputElement) => {
-    // Если поле не валидно, колбэк вернёт true
-    // Обход массива прекратится и вся функция
-    // hasInvalidInput вернёт true
 
     return !inputElement.validity.valid;
   });
 };
-// Функция принимает массив полей ввода
-// и элемент кнопки, состояние которой нужно менять
 
 export const toggleButtonState = (inputList, buttonElement, obj) => {
-  // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList)) {
-    // сделай кнопку неактивной
     buttonElement.classList.add(obj.inactiveButtonClass);
+    buttonElement.setAttribute("disabled", "disabled");
   } else {
-    // иначе сделай кнопку активной
     buttonElement.classList.remove(obj.inactiveButtonClass);
+    buttonElement.removeAttribute("disabled");
   }
 };
 

@@ -34,10 +34,17 @@ export function handleProfileFormSubmit(evt) {
 export function handleCardFormSubmit(evt) {
   evt.preventDefault();
   addCard(cardCaption.value, cardImage.value);
+
+  const inputList = Array.from(formElement.querySelectorAll(".popup__text"));
+  const buttonElement = formElement.querySelector(".popup__button");
+
   formCard.reset();
-  //   toggleButtonState();
 
   closePopup(cardPopup);
+
+  toggleButtonState(inputList, buttonElement, {
+    inactiveButtonClass: "form__button_inactive",
+  });
 }
 export function openImagePopup(caption, link) {
   openPopup(imagePopup);
