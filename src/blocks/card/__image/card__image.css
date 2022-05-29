@@ -3,4 +3,11 @@
   height: auto;
   aspect-ratio: 1/1;
   object-fit: cover;
+  opacity: 1;
+  transition: opacity 0.5s linear;
 }
+
+
+.card__image:hover {
+  opacity: 0.8;
+  }
