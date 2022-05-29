@@ -9,12 +9,10 @@ const hideInputError = (formElement, inputElement, obj) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(obj.inputErrorClass);
   errorElement.classList.remove(obj.errorClass);
-  errorElement.textContent = "верно";
 };
 
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
-
     return !inputElement.validity.valid;
   });
 };
