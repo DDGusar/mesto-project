@@ -25,6 +25,7 @@ export const cardCloseBtn = cardPopup.querySelector(".popup__cross");
 export const imageCloseBtn = imagePopup.querySelector(".popup__cross");
 const cardCaption = cardPopup.querySelector("input[name = card-title]");
 const cardImage = cardPopup.querySelector("input[name = img-source]");
+const imageCaption = imagePopup.querySelector(".popup__caption");
 
 export function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -47,8 +48,8 @@ export function handleCardFormSubmit(evt) {
   closePopup(cardPopup);
 }
 export function openImagePopup(caption, link) {
-  openPopup(imagePopup);
   picImgPopup.src = link;
   picImgPopup.alt = caption;
-  imagePopup.querySelector(".popup__caption").textContent = caption;
+  imageCaption.textContent = caption;
+  openPopup(imagePopup);
 }
