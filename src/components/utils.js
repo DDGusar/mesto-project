@@ -1,4 +1,7 @@
 import { createCard, cardContainer } from "./card.js";
+
+const popups = document.querySelectorAll(".popup");
+
 export function addCard(cardCaptionValue, cardImageSrc) {
   const cardElement = createCard(cardCaptionValue, cardImageSrc);
   cardContainer.prepend(cardElement);
@@ -18,3 +21,11 @@ export function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeEscPopup);
 }
+
+popups.forEach(function (item) {
+  item.addEventListener("click", function (evt) {
+    if (evt.target.classList.contains("popup")) {
+      closePopup(evt.target);
+    }
+  });
+});
