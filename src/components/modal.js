@@ -12,14 +12,16 @@ export const formAddCard = cardPopup.querySelector(".popup__form");
 
 const picImgPopup = imagePopup.querySelector(".popup__image");
 export const formProfileEdit = profilePopup.querySelector(".popup__form");
-const nameInput = formProfileEdit.querySelector("input[name=profile-title]");
-const jobInput = formProfileEdit.querySelector(
+export const nameInput = formProfileEdit.querySelector(
+  "input[name=profile-title]"
+);
+export const jobInput = formProfileEdit.querySelector(
   "input[name=profile-description]"
 );
 export const profileEditBtn = profile.querySelector(".profile__edit-button");
 export const profileAddBtn = profile.querySelector(".profile__add-button");
-const profileTitle = profile.querySelector(".profile__title");
-const profileSubtitle = profile.querySelector(".profile__subtitle");
+export const profileTitle = profile.querySelector(".profile__title");
+export const profileSubtitle = profile.querySelector(".profile__subtitle");
 export const profileCloseBtn = profilePopup.querySelector(".popup__cross");
 export const cardCloseBtn = cardPopup.querySelector(".popup__cross");
 export const imageCloseBtn = imagePopup.querySelector(".popup__cross");
