@@ -29,6 +29,11 @@ const cardCaption = cardPopup.querySelector("input[name = card-title]");
 const cardImage = cardPopup.querySelector("input[name = img-source]");
 const imageCaption = imagePopup.querySelector(".popup__caption");
 
+export function openProfilePopup() {
+  nameInput.value = profileTitle.textContent;
+  jobInput.value = profileSubtitle.textContent;
+}
+
 export function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = nameInput.value;

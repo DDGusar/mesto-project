@@ -1,5 +1,6 @@
 import "../index.css";
 import {
+  openProfilePopup,
   profilePopup,
   cardPopup,
   imagePopup,
@@ -19,6 +20,7 @@ import { initialCards } from "./constants.js";
 import { addCard, closePopup, openPopup } from "./utils.js";
 
 profileEditBtn.addEventListener("click", function () {
+  openProfilePopup();
   openPopup(profilePopup);
 });
 profileAddBtn.addEventListener("click", function () {

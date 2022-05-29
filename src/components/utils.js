@@ -1,5 +1,4 @@
 import { createCard, cardContainer } from "./card.js";
-import { profileTitle, profileSubtitle, nameInput, jobInput } from "./modal.js";
 
 const popups = document.querySelectorAll(".popup");
 
@@ -16,9 +15,6 @@ function closeEscPopup(evt) {
 
 export function openPopup(popup) {
   popup.classList.add("popup_opened");
-  nameInput.value = profileTitle.textContent;
-  jobInput.value = profileSubtitle.textContent;
-
   document.addEventListener("keydown", closeEscPopup);
 }
 export function closePopup(popup) {
