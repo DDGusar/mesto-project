@@ -1,25 +1,26 @@
 import "../index.css";
 import {
+  openProfilePopup,
   profilePopup,
   cardPopup,
   imagePopup,
-  formCard,
-  formElement,
+  formAddCard,
+  formProfileEdit,
   profileEditBtn,
   profileAddBtn,
   profileCloseBtn,
   cardCloseBtn,
   imageCloseBtn,
-  popups,
   handleProfileFormSubmit,
   handleCardFormSubmit,
 } from "./modal.js";
 
 import { enableValidation } from "./validate.js";
-import { initialCards } from "./card.js";
+import { initialCards } from "./constants.js";
 import { addCard, closePopup, openPopup } from "./utils.js";
 
 profileEditBtn.addEventListener("click", function () {
+  openProfilePopup();
   openPopup(profilePopup);
 });
 profileAddBtn.addEventListener("click", function () {
@@ -34,15 +35,8 @@ cardCloseBtn.addEventListener("click", function () {
 imageCloseBtn.addEventListener("click", function () {
   closePopup(imagePopup);
 });
-formElement.addEventListener("submit", handleProfileFormSubmit);
-formCard.addEventListener("submit", handleCardFormSubmit);
-popups.forEach(function (item) {
-  item.addEventListener("click", function (evt) {
-    if (evt.target.classList.contains("popup")) {
-      closePopup(evt.target);
-    }
-  });
-});
+formProfileEdit.addEventListener("submit", handleProfileFormSubmit);
+formAddCard.addEventListener("submit", handleCardFormSubmit);
 
 initialCards.forEach(function (item) {
   addCard(item.name, item.link);
