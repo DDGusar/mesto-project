@@ -1,6 +1,7 @@
 import { openPopup, closePopup } from "./utils.js";
 import { toggleButtonState } from "./validate.js";
 import { addCard } from "./utils.js";
+import { setUserInfo } from "./userInfo.js";
 
 export const container = document.querySelector(".page");
 const profile = container.querySelector(".profile");
@@ -36,8 +37,7 @@ export function openProfilePopup() {
 
 export function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  profileTitle.textContent = nameInput.value;
-  profileSubtitle.textContent = jobInput.value;
+  setUserInfo(nameInput.value, jobInput.value);
   closePopup(profilePopup);
 }
 export function handleCardFormSubmit(evt) {

@@ -1,4 +1,6 @@
 import "../index.css";
+import { initUserInfo, getInitialCards } from "./api";
+
 import {
   openProfilePopup,
   profilePopup,
@@ -38,10 +40,6 @@ imageCloseBtn.addEventListener("click", function () {
 formProfileEdit.addEventListener("submit", handleProfileFormSubmit);
 formAddCard.addEventListener("submit", handleCardFormSubmit);
 
-initialCards.forEach(function (item) {
-  addCard(item.name, item.link);
-});
-
 enableValidation({
   formSelector: ".popup__form",
   inputSelector: ".popup__text",
@@ -50,3 +48,6 @@ enableValidation({
   inputErrorClass: "popup__text_type_error",
   errorClass: "popup__text-error_active",
 });
+
+initUserInfo();
+getInitialCards();

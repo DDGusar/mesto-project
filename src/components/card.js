@@ -1,5 +1,5 @@
 import { openImagePopup } from "./modal.js";
-
+import { addCard } from "./utils.js";
 export const cardContainer = document.querySelector(".cards");
 const cardTemplate = document.querySelector("#card-template").content;
 
@@ -29,4 +29,10 @@ export function createCard(cardCaptionValue, cardImageSrc) {
       removeCard(cardElement);
     });
   return cardElement;
+}
+export function addCards(cards) {
+  cards.forEach((element) => {
+    addCard(element.name, element.link);
+    console.log(element.link);
+  });
 }

@@ -24,3 +24,11 @@ export const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
+
+export const config = {
+  baseUrl: "https://nomoreparties.co/v1/plus-cohort-10/",
+  headers: {
+    authorization: "78934802-087a-46b7-9dd2-2151d51fe105",
+    "Content-Type": "application/json",
+  },
+};
