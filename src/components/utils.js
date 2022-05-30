@@ -4,7 +4,7 @@ const popups = document.querySelectorAll(".popup");
 
 export function addCard(cardCaptionValue, cardImageSrc) {
   const cardElement = createCard(cardCaptionValue, cardImageSrc);
-  cardContainer.prepend(cardElement);
+  cardContainer.append(cardElement);
 }
 
 function closeEscPopup(evt) {

@@ -2,7 +2,7 @@ import { openPopup, closePopup } from "./utils.js";
 import { toggleButtonState } from "./validate.js";
 import { addCard } from "./utils.js";
 import { setUserInfo } from "./userInfo.js";
-import { saveProfileInfo } from "./api.js";
+import { postCard, saveProfileInfo } from "./api.js";
 
 export const container = document.querySelector(".page");
 const profile = container.querySelector(".profile");
@@ -46,6 +46,7 @@ export function handleProfileFormSubmit(evt) {
 export function handleCardFormSubmit(evt) {
   evt.preventDefault();
   addCard(cardCaption.value, cardImage.value);
+  postCard(cardCaption.value, cardImage.value);
 
   const inputList = Array.from(formAddCard.querySelectorAll(".popup__text"));
   const buttonElement = formAddCard.querySelector(".popup__button");
