@@ -33,6 +33,5 @@ export function createCard(cardCaptionValue, cardImageSrc) {
 export function addCards(cards) {
   cards.forEach((element) => {
     addCard(element.name, element.link);
-    console.log(element.link);
   });
 }

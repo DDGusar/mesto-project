@@ -2,6 +2,7 @@ import { openPopup, closePopup } from "./utils.js";
 import { toggleButtonState } from "./validate.js";
 import { addCard } from "./utils.js";
 import { setUserInfo } from "./userInfo.js";
+import { saveProfileInfo } from "./api.js";
 
 export const container = document.querySelector(".page");
 const profile = container.querySelector(".profile");
@@ -23,6 +24,7 @@ export const profileEditBtn = profile.querySelector(".profile__edit-button");
 export const profileAddBtn = profile.querySelector(".profile__add-button");
 export const profileTitle = profile.querySelector(".profile__title");
 export const profileSubtitle = profile.querySelector(".profile__subtitle");
+export const profileAvatar = profile.querySelector(".profile__avatar");
 export const profileCloseBtn = profilePopup.querySelector(".popup__cross");
 export const cardCloseBtn = cardPopup.querySelector(".popup__cross");
 export const imageCloseBtn = imagePopup.querySelector(".popup__cross");
@@ -38,6 +40,7 @@ export function openProfilePopup() {
 export function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   setUserInfo(nameInput.value, jobInput.value);
+  saveProfileInfo(nameInput.value, jobInput.value);
   closePopup(profilePopup);
 }
 export function handleCardFormSubmit(evt) {

@@ -1,5 +1,5 @@
 import { config } from "./constants";
-import { setUserInfo } from "./userInfo";
+import { setUserInfo, setAvatar } from "./userInfo";
 import { addCards } from "./card";
 
 export const initUserInfo = () => {
@@ -14,6 +14,7 @@ export const initUserInfo = () => {
     })
     .then((res) => {
       setUserInfo(res.name, res.about);
+      setAvatar(res.avatar);
     })
     .catch((err) => {
       `Ошибка: ${err}`;
@@ -36,4 +37,15 @@ export const getInitialCards = () => {
     .catch((err) => {
       `Ошибка: ${err}`;
     });
+};
+
+export const saveProfileInfo = (name, about) => {
+  return fetch(`${config.baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: config.headers,
+    body: JSON.stringify({
+      name: `${name}`,
+      about: `${about}`,
+    }),
+  });
 };

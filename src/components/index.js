@@ -18,8 +18,7 @@ import {
 } from "./modal.js";
 
 import { enableValidation } from "./validate.js";
-import { initialCards } from "./constants.js";
-import { addCard, closePopup, openPopup } from "./utils.js";
+import { closePopup, openPopup } from "./utils.js";
 
 profileEditBtn.addEventListener("click", function () {
   openProfilePopup();
