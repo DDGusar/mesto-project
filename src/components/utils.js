@@ -21,6 +21,13 @@ export function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeEscPopup);
 }
+export function renderLoading(element, btnText, onLoad) {
+  if (onLoad) {
+    element.textContent = "Сохранение...";
+  } else {
+    element.textContent = btnText;
+  }
+}
 
 popups.forEach(function (item) {
   item.addEventListener("click", function (evt) {

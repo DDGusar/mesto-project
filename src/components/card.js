@@ -1,6 +1,6 @@
 import { openImagePopup } from "./modal.js";
 import { addCard } from "./utils.js";
-import { myID } from "./userInfo.js";
+// import { myID } from "./userInfo.js";
 export const cardContainer = document.querySelector(".cards");
 const cardTemplate = document.querySelector("#card-template").content;
 

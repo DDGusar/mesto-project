@@ -13,7 +13,7 @@ import {
   profileEditBtn,
   profileAddBtn,
   profileCloseBtn,
-  profileAvatar,
+  profileAvatarEditBtn,
   cardCloseBtn,
   imageCloseBtn,
   avatarCloseBtn,
@@ -32,7 +32,7 @@ profileEditBtn.addEventListener("click", function () {
 profileAddBtn.addEventListener("click", function () {
   openPopup(cardPopup);
 });
-profileAvatar.addEventListener("click", function () {
+profileAvatarEditBtn.addEventListener("click", function () {
   openPopup(avatarPopup);
 });
 profileCloseBtn.addEventListener("click", function () {

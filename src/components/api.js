@@ -1,6 +1,8 @@
 import { config } from "./constants";
 import { setUserInfo, setAvatar, setMyID } from "./userInfo";
 import { addCards } from "./card";
+import { profileSubmitBtn, cardSubmitBtn, avatarSubmitBtn } from "./modal";
+import { addCard, renderLoading } from "./utils";
 
 export const initUserInfo = () => {
   return fetch(`${config.baseUrl}/users/me`, {
@@ -57,6 +59,9 @@ export const saveProfileInfo = (name, about) => {
     })
     .catch((err) => {
       `Ошибка: ${err}`;
+    })
+    .finally(() => {
+      renderLoading(profileSubmitBtn, "Сохранить", false);
     });
 };
 
@@ -75,8 +80,14 @@ export const postCard = (name, link) => {
       }
       return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}`);
     })
+    .then((res) => {
+      addCard(res);
+    })
     .catch((err) => {
       `Ошибка: ${err}`;
+    })
+    .finally(() => {
+      renderLoading(cardSubmitBtn, "Создать", false);
     });
 };
 
@@ -100,6 +111,9 @@ export const saveAvatar = (link) => {
       })
       .catch((err) => {
         `Ошибка: ${err}`;
+      })
+      .finally(() => {
+        renderLoading(avatarSubmitBtn, "Сохранить", false);
       })
   );
 };
