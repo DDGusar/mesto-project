@@ -10,7 +10,7 @@ function removeCard(cardElement) {
   cardElement.remove();
 }
 
-export function createCard(cardCaptionValue, cardImageSrc) {
+export function createCard(cardCaptionValue, cardImageSrc, cardLikes) {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   cardElement.querySelector(".card__title").textContent = cardCaptionValue;
   const cardPic = cardElement.querySelector(".card__image");
@@ -23,6 +23,7 @@ export function createCard(cardCaptionValue, cardImageSrc) {
   cardElement
     .querySelector(".card__heart")
     .addEventListener("click", toggleLike);
+  cardElement.querySelector(".card__like-counter").textContent = cardLikes;
   cardElement
     .querySelector(".card__trash")
     .addEventListener("click", function () {
@@ -32,6 +33,6 @@ export function createCard(cardCaptionValue, cardImageSrc) {
 }
 export function addCards(cards) {
   cards.forEach((element) => {
-    addCard(element.name, element.link);
+    addCard(element.name, element.link, element.likes.length);
   });
 }

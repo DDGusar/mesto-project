@@ -2,8 +2,8 @@ import { createCard, cardContainer } from "./card.js";
 
 const popups = document.querySelectorAll(".popup");
 
-export function addCard(cardCaptionValue, cardImageSrc) {
-  const cardElement = createCard(cardCaptionValue, cardImageSrc);
+export function addCard(cardCaptionValue, cardImageSrc, cardLikes) {
+  const cardElement = createCard(cardCaptionValue, cardImageSrc, cardLikes);
   cardContainer.append(cardElement);
 }
 
