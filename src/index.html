@@ -23,11 +23,18 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img
-            src="<%=require('./images/Avatar.jpg')%>"
-            alt="аватар"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar-wrap">
+            <img
+              src="<%=require('./images/Avatar.jpg')%>"
+              alt="аватар"
+              class="profile__avatar"
+            />
+            <button
+              class="profile__avatar-btn"
+              type="button"
+              aria-label="смена аватара"
+            ></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title"></h1>
             <button

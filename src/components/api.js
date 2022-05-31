@@ -1,5 +1,5 @@
 import { config } from "./constants";
-import { setUserInfo, setAvatar } from "./userInfo";
+import { setUserInfo, setAvatar, setMyID } from "./userInfo";
 import { addCards } from "./card";
 
 export const initUserInfo = () => {
@@ -15,6 +15,7 @@ export const initUserInfo = () => {
     .then((res) => {
       setUserInfo(res.name, res.about);
       setAvatar(res.avatar);
+      setMyID(res._id);
     })
     .catch((err) => {
       `Ошибка: ${err}`;
