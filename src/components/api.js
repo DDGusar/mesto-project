@@ -47,7 +47,16 @@ export const saveProfileInfo = (name, about) => {
       name: `${name}`,
       about: `${about}`,
     }),
-  });
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}`);
+    })
+    .catch((err) => {
+      `Ошибка: ${err}`;
+    });
 };
 
 export const postCard = (name, link) => {
@@ -58,5 +67,38 @@ export const postCard = (name, link) => {
       name: `${name}`,
       link: `${link}`,
     }),
-  });
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}`);
+    })
+    .catch((err) => {
+      `Ошибка: ${err}`;
+    });
+};
+
+export const saveAvatar = (link) => {
+  return (
+    fetch(`${config.baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: config.headers,
+      body: JSON.stringify({
+        avatar: `${link}`,
+      }),
+    })
+      // .then((res) => {
+      //   console.log(res);
+      // })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}`);
+      })
+      .catch((err) => {
+        `Ошибка: ${err}`;
+      })
+  );
 };

@@ -1,14 +1,15 @@
 import { openPopup, closePopup } from "./utils.js";
 import { toggleButtonState } from "./validate.js";
 import { addCard } from "./utils.js";
-import { setUserInfo } from "./userInfo.js";
-import { postCard, saveProfileInfo } from "./api.js";
+import { setUserInfo, setAvatar } from "./userInfo.js";
+import { postCard, saveProfileInfo, saveAvatar } from "./api.js";
 
 export const container = document.querySelector(".page");
 const profile = container.querySelector(".profile");
 export const profilePopup = container.querySelector(".profile-popup");
 export const cardPopup = container.querySelector(".card-popup");
 export const imagePopup = container.querySelector(".image-popup");
+export const avatarPopup = container.querySelector(".avatar-popup");
 
 export const formAddCard = cardPopup.querySelector(".popup__form");
 
@@ -28,6 +29,11 @@ export const profileAvatar = profile.querySelector(".profile__avatar");
 export const profileCloseBtn = profilePopup.querySelector(".popup__cross");
 export const cardCloseBtn = cardPopup.querySelector(".popup__cross");
 export const imageCloseBtn = imagePopup.querySelector(".popup__cross");
+export const formAvatarEdit = avatarPopup.querySelector(".popup__form");
+export const avatarCloseBtn = avatarPopup.querySelector(".popup__cross");
+export const avatarInput = avatarPopup.querySelector(
+  "input[name = avatar-source]"
+);
 const cardCaption = cardPopup.querySelector("input[name = card-title]");
 const cardImage = cardPopup.querySelector("input[name = img-source]");
 const imageCaption = imagePopup.querySelector(".popup__caption");
@@ -57,6 +63,12 @@ export function handleCardFormSubmit(evt) {
     inactiveButtonClass: "popup__button_inactive",
   });
   closePopup(cardPopup);
+}
+export function handleAvatarFormSubmit(evt) {
+  evt.preventDefault();
+  setAvatar(avatarInput.value);
+  saveAvatar(avatarInput.value);
+  closePopup(avatarPopup);
 }
 export function openImagePopup(caption, link) {
   picImgPopup.src = link;
