@@ -1,5 +1,6 @@
 .popup__container {
-  display: grid;
+  /* display: grid; */
+  position: relative;
   gap: 8px;
   padding-left: 38px;
   padding-bottom: 28px;
