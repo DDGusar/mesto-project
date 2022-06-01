@@ -1,12 +1,25 @@
 import { openImagePopup } from "./modal.js";
 import { addCard } from "./utils.js";
 import { myProfile } from "./userInfo.js";
-import { deleteCard } from "./api.js";
+import { deleteCard, putLike, deleteLike } from "./api.js";
 export const cardContainer = document.querySelector(".cards");
 const cardTemplate = document.querySelector("#card-template").content;
 
-function toggleLike(evt) {
-  evt.target.classList.toggle("card__heart_active");
+function toggleLike(heart, counter, id) {
+  if (heart.classList.contains("card__heart_active")) {
+    deleteLike(heart, counter, id);
+  } else {
+    putLike(heart, counter, id);
+  }
+}
+export function countLikes(elem, quantity) {
+  elem.textContent = quantity;
+}
+export function addLike(elem) {
+  elem.classList.add("card__heart_active");
+}
+export function removeLike(elem) {
+  elem.classList.remove("card__heart_active");
 }
 function removeCard(cardElement, id) {
   cardElement.remove();
@@ -21,11 +34,21 @@ export function createCard(cardObject) {
   cardPic.addEventListener("click", function (evt) {
     openImagePopup(cardObject.name, cardObject.link);
   });
-  cardElement
-    .querySelector(".card__heart")
-    .addEventListener("click", toggleLike);
-  cardElement.querySelector(".card__like-counter").textContent =
-    cardObject.likes.length;
+  //для лайка
+  const counter = cardElement.querySelector(".card__like-counter");
+  const heart = cardElement.querySelector(".card__heart");
+  countLikes(counter, cardObject.likes.length);
+  cardObject.likes.forEach((like) => {
+    if (like._id === myProfile._id) {
+      addLike(heart);
+      return;
+    }
+  });
+  heart.addEventListener("click", function () {
+    toggleLike(heart, counter, cardObject._id);
+  });
+
+  //для удаления карточки
   if (!(myProfile._id === cardObject.owner._id)) {
     cardElement.querySelector(".card__trash").remove();
   } else {
@@ -42,6 +65,5 @@ export function createCard(cardObject) {
 export function addCards(cards) {
   cards.forEach((element) => {
     addCard(element);
-    // console.log(element.createdAt);
   });
 }

@@ -1,6 +1,6 @@
 import { config } from "./constants";
 import { setUserInfo, setAvatar, setMyID } from "./userInfo";
-import { addCards } from "./card";
+import { addCards, addLike, removeLike, countLikes } from "./card";
 import { profileSubmitBtn, cardSubmitBtn, avatarSubmitBtn } from "./modal";
 import { addCard, renderLoading } from "./utils";
 
@@ -123,6 +123,46 @@ export const deleteCard = (cardId) => {
         return res.json();
       }
       return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}`);
+    })
+    .catch((err) => {
+      `Ошибка: ${err}`;
+    });
+};
+
+export const putLike = (heart, counter, cardId) => {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+    method: "PUT",
+    headers: config.headers,
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}`);
+    })
+    .then((res) => {
+      addLike(heart);
+      countLikes(counter, res.likes.length);
+    })
+    .catch((err) => {
+      `Ошибка: ${err}`;
+    });
+};
+
+export const deleteLike = (heart, counter, cardId) => {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+    method: "DELETE",
+    headers: config.headers,
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}`);
+    })
+    .then((res) => {
+      removeLike(heart);
+      countLikes(counter, res.likes.length);
     })
     .catch((err) => {
       `Ошибка: ${err}`;
