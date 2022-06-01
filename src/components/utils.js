@@ -1,10 +1,9 @@
 import { createCard, cardContainer } from "./card.js";
 
 const popups = document.querySelectorAll(".popup");
-
-export function addCard(cardCaptionValue, cardImageSrc) {
-  const cardElement = createCard(cardCaptionValue, cardImageSrc);
-  cardContainer.prepend(cardElement);
+export function addCard(cardObject) {
+  const cardElement = createCard(cardObject);
+  cardContainer.append(cardElement);
 }
 
 function closeEscPopup(evt) {
@@ -20,6 +19,13 @@ export function openPopup(popup) {
 export function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeEscPopup);
+}
+export function renderLoading(element, btnText, onLoad) {
+  if (onLoad) {
+    element.textContent = "Сохранение...";
+  } else {
+    element.textContent = btnText;
+  }
 }
 
 popups.forEach(function (item) {

@@ -1,23 +1,29 @@
 import "../index.css";
+import { initUserInfo, getInitialCards } from "./api";
+
 import {
   openProfilePopup,
   profilePopup,
   cardPopup,
   imagePopup,
+  avatarPopup,
   formAddCard,
   formProfileEdit,
+  formAvatarEdit,
   profileEditBtn,
   profileAddBtn,
   profileCloseBtn,
+  profileAvatarEditBtn,
   cardCloseBtn,
   imageCloseBtn,
+  avatarCloseBtn,
   handleProfileFormSubmit,
   handleCardFormSubmit,
+  handleAvatarFormSubmit,
 } from "./modal.js";
 
 import { enableValidation } from "./validate.js";
-import { initialCards } from "./constants.js";
-import { addCard, closePopup, openPopup } from "./utils.js";
+import { closePopup, openPopup } from "./utils.js";
 
 profileEditBtn.addEventListener("click", function () {
   openProfilePopup();
@@ -26,21 +32,24 @@ profileEditBtn.addEventListener("click", function () {
 profileAddBtn.addEventListener("click", function () {
   openPopup(cardPopup);
 });
+profileAvatarEditBtn.addEventListener("click", function () {
+  openPopup(avatarPopup);
+});
 profileCloseBtn.addEventListener("click", function () {
   closePopup(profilePopup);
 });
 cardCloseBtn.addEventListener("click", function () {
   closePopup(cardPopup);
 });
+avatarCloseBtn.addEventListener("click", function () {
+  closePopup(avatarPopup);
+});
 imageCloseBtn.addEventListener("click", function () {
   closePopup(imagePopup);
 });
 formProfileEdit.addEventListener("submit", handleProfileFormSubmit);
 formAddCard.addEventListener("submit", handleCardFormSubmit);
-
-initialCards.forEach(function (item) {
-  addCard(item.name, item.link);
-});
+formAvatarEdit.addEventListener("submit", handleAvatarFormSubmit);
 
 enableValidation({
   formSelector: ".popup__form",
@@ -50,3 +59,6 @@ enableValidation({
   inputErrorClass: "popup__text_type_error",
   errorClass: "popup__text-error_active",
 });
+
+initUserInfo();
+getInitialCards();

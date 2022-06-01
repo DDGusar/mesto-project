@@ -23,19 +23,26 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img
-            src="<%=require('./images/Avatar.jpg')%>"
-            alt="аватар"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar-wrap">
+            <img
+              src="<%=require('./images/Avatar.jpg')%>"
+              alt="аватар"
+              class="profile__avatar"
+            />
+            <button
+              class="profile__avatar-btn"
+              type="button"
+              aria-label="смена аватара"
+            ></button>
+          </div>
           <div class="profile__info">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <h1 class="profile__title"></h1>
             <button
               class="profile__edit-button"
               type="button"
               aria-label="Редактировать профиль"
             ></button>
-            <p class="profile__subtitle">Исследователь океана</p>
+            <p class="profile__subtitle"></p>
           </div>
           <button
             class="profile__add-button"
@@ -134,6 +141,36 @@
           </form>
         </div>
       </div>
+      <div class="popup avatar-popup">
+        <div class="popup__container">
+          <button
+            type="button"
+            class="popup__cross"
+            aria-label="закрыть форму"
+          ></button>
+          <form name="avatar-data" class="popup__form" novalidate>
+            <h3 class="popup__title">Обновить аватар</h3>
+            <input
+              type="url"
+              id="avatar-link-input"
+              class="popup__text"
+              name="avatar-source"
+              placeholder="Ссылка на аватар"
+              required
+            />
+            <span class="popup__text-error avatar-link-input-error"
+              >Текст ошибки</span
+            >
+            <button
+              type="submit"
+              class="popup__button"
+              aria-label="Обновить авватар"
+            >
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
       <div class="popup image-popup">
         <div class="popup__container">
           <button
@@ -157,11 +194,14 @@
           />
           <div class="card__caption">
             <h2 class="card__title"></h2>
-            <button
-              type="button"
-              class="card__heart"
-              aria-label="Поставить лайк"
-            ></button>
+            <div class="card__like-container">
+              <button
+                type="button"
+                class="card__heart"
+                aria-label="Поставить лайк"
+              ></button>
+              <p class="card__like-counter">0</p>
+            </div>
           </div>
         </article>
       </template>
