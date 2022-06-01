@@ -1,5 +1,4 @@
 .popup__container {
-  /* display: grid; */
   position: relative;
   gap: 8px;
 }
