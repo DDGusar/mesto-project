@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru" class="page">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mesto</title>
+    <meta
+      name="description"
+      content="проект 3-4 на Яндекс Практикуме. Использование форм.JavaScript"
+    />
+    <meta name="keywords" content="html, css" />
+    <meta name="author" content="Дарья Гусар" />
+  <script defer src="main.js"></script><link href="main.css" rel="stylesheet"></head>
+  <body>
+    <div>
+      <header class="header">
+        <img
+          src="03b78ada3425e9132ff3.svg"
+          alt="логотип"
+          class="header__logo"
+        />
+      </header>
+      <main class="content">
+        <section class="profile">
+          <div class="profile__avatar-wrap">
+            <img
+              src="3aab611bed1ee51a4024.jpg"
+              alt="аватар"
+              class="profile__avatar"
+            />
+            <button
+              class="profile__avatar-btn"
+              type="button"
+              aria-label="смена аватара"
+            ></button>
+          </div>
+          <div class="profile__info">
+            <h1 class="profile__title"></h1>
+            <button
+              class="profile__edit-button"
+              type="button"
+              aria-label="Редактировать профиль"
+            ></button>
+            <p class="profile__subtitle"></p>
+          </div>
+          <button
+            class="profile__add-button"
+            type="button"
+            aria-label="Добавить"
+          ></button>
+        </section>
+        <section class="cards"></section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">© 2022 Mesto Russia</p>
+      </footer>
+      <div class="popup profile-popup">
+        <div class="popup__container">
+          <button
+            type="button"
+            class="popup__cross"
+            aria-label="закрыть форму"
+          ></button>
+
+          <form name="profile-data" class="popup__form" novalidate>
+            <h3 class="popup__title">Редактировать профиль</h3>
+            <input
+              type="text"
+              id="name-input"
+              class="popup__text"
+              name="profile-title"
+              value="Жак-Ив Кусто"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="popup__text-error name-input-error">Текст ошибки</span>
+            <input
+              type="text"
+              id="description-input"
+              class="popup__text"
+              name="profile-description"
+              value="Исследователь океана"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span class="popup__text-error description-input-error"
+              >Текст ошибки</span
+            >
+            <button
+              type="submit"
+              class="popup__button"
+              aria-label="Сохранить данные"
+            >
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="popup card-popup">
+        <div class="popup__container">
+          <button
+            type="button"
+            class="popup__cross"
+            aria-label="закрыть форму"
+          ></button>
+
+          <form name="card-data" class="popup__form" novalidate>
+            <h3 class="popup__title">Новое место</h3>
+            <input
+              type="text"
+              id="place-input"
+              class="popup__text"
+              name="card-title"
+              placeholder="Название"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <span class="popup__text-error place-input-error"
+              >Текст ошибки</span
+            >
+            <input
+              type="url"
+              id="link-input"
+              class="popup__text"
+              name="img-source"
+              placeholder="Ссылка на картинку"
+              required
+            />
+            <span class="popup__text-error link-input-error">Текст ошибки</span>
+            <button
+              type="submit"
+              class="popup__button"
+              aria-label="Создать карточку"
+            >
+              Создать
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="popup avatar-popup">
+        <div class="popup__container">
+          <button
+            type="button"
+            class="popup__cross"
+            aria-label="закрыть форму"
+          ></button>
+          <form name="avatar-data" class="popup__form" novalidate>
+            <h3 class="popup__title">Обновить аватар</h3>
+            <input
+              type="url"
+              id="avatar-link-input"
+              class="popup__text"
+              name="avatar-source"
+              placeholder="Ссылка на аватар"
+              required
+            />
+            <span class="popup__text-error avatar-link-input-error"
+              >Текст ошибки</span
+            >
+            <button
+              type="submit"
+              class="popup__button"
+              aria-label="Обновить авватар"
+            >
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="popup image-popup">
+        <div class="popup__container">
+          <button
+            type="button"
+            class="popup__cross"
+            aria-label="закрыть форму"
+          ></button>
+          <figure class="popup__figure">
+            <img src="#" alt="" class="popup__image" />
+            <figcaption class="popup__caption"></figcaption>
+          </figure>
+        </div>
+      </div>
+      <template id="card-template">
+        <article class="card">
+          <img src="#" alt="" class="card__image" />
+          <img
+            src="cbc09a894bdd4c956365.svg"
+            alt="удалить карточку"
+            class="card__trash"
+          />
+          <div class="card__caption">
+            <h2 class="card__title"></h2>
+            <div class="card__like-container">
+              <button
+                type="button"
+                class="card__heart"
+                aria-label="Поставить лайк"
+              ></button>
+              <p class="card__like-counter">0</p>
+            </div>
+          </div>
+        </article>
+      </template>
+    </div>
+  </body>
+</html>
