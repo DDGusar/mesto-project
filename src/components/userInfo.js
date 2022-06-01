@@ -1,5 +1,5 @@
 import { profileTitle, profileSubtitle, profileAvatar } from "./modal";
-// const myID = "";
+export let myProfile = {};
 
 export function setUserInfo(name, about) {
   profileTitle.textContent = name;
@@ -9,8 +9,5 @@ export function setAvatar(link) {
   profileAvatar.src = link;
 }
 export function setMyID(identificator) {
-  console.log(identificator);
-  const myID = identificator;
-  return myID;
-  // console.log(myID);
+  myProfile = identificator;
 }

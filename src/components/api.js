@@ -17,7 +17,7 @@ export const initUserInfo = () => {
     .then((res) => {
       setUserInfo(res.name, res.about);
       setAvatar(res.avatar);
-      setMyID(res._id);
+      setMyID(res);
     })
     .catch((err) => {
       `Ошибка: ${err}`;
