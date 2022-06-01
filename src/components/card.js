@@ -1,14 +1,16 @@
 import { openImagePopup } from "./modal.js";
 import { addCard } from "./utils.js";
 import { myProfile } from "./userInfo.js";
+import { deleteCard } from "./api.js";
 export const cardContainer = document.querySelector(".cards");
 const cardTemplate = document.querySelector("#card-template").content;
 
 function toggleLike(evt) {
   evt.target.classList.toggle("card__heart_active");
 }
-function removeCard(cardElement) {
+function removeCard(cardElement, id) {
   cardElement.remove();
+  deleteCard(id);
 }
 export function createCard(cardObject) {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
@@ -24,17 +26,13 @@ export function createCard(cardObject) {
     .addEventListener("click", toggleLike);
   cardElement.querySelector(".card__like-counter").textContent =
     cardObject.likes.length;
-  // "b93b7e9ac4f5ec5e13d36e94"
-  // console.log(myProfile._id);
-  // console.log(cardObject.owner._id);
-  // console.log(cardElement.querySelector(".card__trash"));
   if (!(myProfile._id === cardObject.owner._id)) {
     cardElement.querySelector(".card__trash").remove();
   } else {
     cardElement
       .querySelector(".card__trash")
       .addEventListener("click", function () {
-        removeCard(cardElement);
+        removeCard(cardElement, cardObject._id);
       });
   }
 
