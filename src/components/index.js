@@ -6,20 +6,24 @@ import {
   profilePopup,
   cardPopup,
   imagePopup,
+  cardDeletePopup,
   avatarPopup,
   formAddCard,
   formProfileEdit,
   formAvatarEdit,
+  formDeleteCard,
   profileEditBtn,
   profileAddBtn,
   profileCloseBtn,
   profileAvatarEditBtn,
   cardCloseBtn,
+  deleteCardCloseBtn,
   imageCloseBtn,
   avatarCloseBtn,
   handleProfileFormSubmit,
   handleCardFormSubmit,
   handleAvatarFormSubmit,
+  handleDeleteCardFormSubmit,
 } from "./modal.js";
 
 import { enableValidation } from "./validate.js";
@@ -47,9 +51,13 @@ avatarCloseBtn.addEventListener("click", function () {
 imageCloseBtn.addEventListener("click", function () {
   closePopup(imagePopup);
 });
+deleteCardCloseBtn.addEventListener("click", function () {
+  closePopup(cardDeletePopup);
+});
 formProfileEdit.addEventListener("submit", handleProfileFormSubmit);
 formAddCard.addEventListener("submit", handleCardFormSubmit);
 formAvatarEdit.addEventListener("submit", handleAvatarFormSubmit);
+formDeleteCard.addEventListener("submit", handleDeleteCardFormSubmit);
 
 enableValidation({
   formSelector: ".popup__form",
