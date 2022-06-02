@@ -1,45 +1,22 @@
 import { config } from "./constants";
-import { setUserInfo, setAvatar, setMyID } from "./userInfo";
-import { addCards, addLike, removeLike, countLikes } from "./card";
-import { profileSubmitBtn, cardSubmitBtn, avatarSubmitBtn } from "./modal";
-import { addCard, renderLoading } from "./utils";
+
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}`);
+}
 
 export const initUserInfo = () => {
   return fetch(`${config.baseUrl}/users/me`, {
     headers: config.headers,
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(res.status);
-    })
-    .then((res) => {
-      setUserInfo(res.name, res.about);
-      setAvatar(res.avatar);
-      setMyID(res);
-    })
-    .catch((err) => {
-      `Ошибка: ${err}`;
-    });
+  }).then(checkResponse);
 };
 
 export const getInitialCards = () => {
   return fetch(`${config.baseUrl}/cards`, {
     headers: config.headers,
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .then((res) => {
-      addCards(res);
-    })
-    .catch((err) => {
-      `Ошибка: ${err}`;
-    });
+  }).then(checkResponse);
 };
 
 export const saveProfileInfo = (name, about) => {
@@ -50,19 +27,7 @@ export const saveProfileInfo = (name, about) => {
       name: `${name}`,
       about: `${about}`,
     }),
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}`);
-    })
-    .catch((err) => {
-      `Ошибка: ${err}`;
-    })
-    .finally(() => {
-      renderLoading(profileSubmitBtn, "Сохранить", false);
-    });
+  }).then(checkResponse);
 };
 
 export const postCard = (name, link) => {
@@ -73,22 +38,7 @@ export const postCard = (name, link) => {
       name: `${name}`,
       link: `${link}`,
     }),
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}`);
-    })
-    .then((res) => {
-      addCard(res);
-    })
-    .catch((err) => {
-      `Ошибка: ${err}`;
-    })
-    .finally(() => {
-      renderLoading(cardSubmitBtn, "Создать", false);
-    });
+  }).then(checkResponse);
 };
 
 export const saveAvatar = (link) => {
@@ -98,73 +48,26 @@ export const saveAvatar = (link) => {
     body: JSON.stringify({
       avatar: `${link}`,
     }),
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}`);
-    })
-    .catch((err) => {
-      `Ошибка: ${err}`;
-    })
-    .finally(() => {
-      renderLoading(avatarSubmitBtn, "Сохранить", false);
-    });
+  }).then(checkResponse);
 };
 
 export const deleteCard = (cardId) => {
   return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: "DELETE",
     headers: config.headers,
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}`);
-    })
-    .catch((err) => {
-      `Ошибка: ${err}`;
-    });
+  }).then(checkResponse);
 };
 
 export const putLike = (heart, counter, cardId) => {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: "PUT",
     headers: config.headers,
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}`);
-    })
-    .then((res) => {
-      addLike(heart);
-      countLikes(counter, res.likes.length);
-    })
-    .catch((err) => {
-      `Ошибка: ${err}`;
-    });
+  }).then(checkResponse);
 };
 
 export const deleteLike = (heart, counter, cardId) => {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: "DELETE",
     headers: config.headers,
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status} - ${res.statusText}`);
-    })
-    .then((res) => {
-      removeLike(heart);
-      countLikes(counter, res.likes.length);
-    })
-    .catch((err) => {
-      `Ошибка: ${err}`;
-    });
+  }).then(checkResponse);
 };
