@@ -1,4 +1,4 @@
-import { openPopup, closePopup } from "./utils.js";
+import { openPopup, closePopup, addCard } from "./utils.js";
 import { toggleButtonState } from "./validate.js";
 import { renderLoading } from "./utils.js";
 import { setUserInfo, setAvatar } from "./userInfo.js";
@@ -58,33 +58,59 @@ export function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   setUserInfo(nameInput.value, jobInput.value);
   renderLoading(profileSubmitBtn, profileSubmitBtn.textContent, true);
-  saveProfileInfo(nameInput.value, jobInput.value);
-  closePopup(profilePopup);
+  saveProfileInfo(nameInput.value, jobInput.value)
+    .then(closePopup(profilePopup))
+    .catch((err) => {
+      `Ошибка: ${err}`;
+    })
+    .finally(() => {
+      renderLoading(profileSubmitBtn, "Сохранить", false);
+    });
 }
 export function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  renderLoading(cardSubmitBtn, cardSubmitBtn.textContent, true);
-  postCard(cardCaption.value, cardImage.value);
   const inputList = Array.from(formAddCard.querySelectorAll(".popup__text"));
   const buttonElement = formAddCard.querySelector(".popup__button");
-  formAddCard.reset();
-  toggleButtonState(inputList, buttonElement, {
-    inactiveButtonClass: "popup__button_inactive",
-  });
-  closePopup(cardPopup);
+  renderLoading(cardSubmitBtn, cardSubmitBtn.textContent, true);
+  postCard(cardCaption.value, cardImage.value)
+    .then((res) => {
+      addCard(res);
+    })
+    .then(formAddCard.reset())
+    .then(
+      toggleButtonState(inputList, buttonElement, {
+        inactiveButtonClass: "popup__button_inactive",
+      })
+    )
+    .then(closePopup(cardPopup))
+    .catch((err) => {
+      `Ошибка: ${err}`;
+    })
+    .finally(() => {
+      renderLoading(cardSubmitBtn, "Создать", false);
+    });
 }
 export function handleAvatarFormSubmit(evt) {
   evt.preventDefault();
   setAvatar(avatarInput.value);
   renderLoading(avatarSubmitBtn, avatarSubmitBtn.textContent, true);
-  saveAvatar(avatarInput.value);
-  closePopup(avatarPopup);
+  saveAvatar(avatarInput.value)
+    .then(closePopup(avatarPopup))
+    .catch((err) => {
+      `Ошибка: ${err}`;
+    })
+    .finally(() => {
+      renderLoading(avatarSubmitBtn, "Сохранить", false);
+    });
 }
 export function handleDeleteCardFormSubmit(evt) {
   evt.preventDefault();
   deleteCardObj.element.remove();
-  deleteCard(deleteCardObj.id);
-  closePopup(cardDeletePopup);
+  deleteCard(deleteCardObj.id)
+    .then(closePopup(cardDeletePopup))
+    .catch((err) => {
+      `Ошибка: ${err}`;
+    });
 }
 export function openImagePopup(caption, link) {
   picImgPopup.src = link;

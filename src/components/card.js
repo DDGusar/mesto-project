@@ -8,9 +8,23 @@ export let deleteCardObj = {};
 
 function toggleLike(heart, counter, id) {
   if (heart.classList.contains("card__heart_active")) {
-    deleteLike(heart, counter, id);
+    deleteLike(heart, counter, id)
+      .then((res) => {
+        removeLike(heart);
+        countLikes(counter, res.likes.length);
+      })
+      .catch((err) => {
+        `Ошибка: ${err}`;
+      });
   } else {
-    putLike(heart, counter, id);
+    putLike(heart, counter, id)
+      .then((res) => {
+        addLike(heart);
+        countLikes(counter, res.likes.length);
+      })
+      .catch((err) => {
+        `Ошибка: ${err}`;
+      });
   }
 }
 export function countLikes(elem, quantity) {

@@ -1,6 +1,7 @@
 import "../index.css";
 import { initUserInfo, getInitialCards } from "./api";
-
+import { setUserInfo, setAvatar, setMyID } from "./userInfo";
+import { addCards } from "./card";
 import {
   openProfilePopup,
   profilePopup,
@@ -68,5 +69,19 @@ enableValidation({
   errorClass: "popup__text-error_active",
 });
 
-initUserInfo();
-getInitialCards();
+initUserInfo()
+  .then((profileInfo) => {
+    setUserInfo(profileInfo.name, profileInfo.about);
+    setAvatar(profileInfo.avatar);
+    setMyID(profileInfo);
+  })
+  .catch((err) => {
+    `Ошибка: ${err}`;
+  });
+getInitialCards()
+  .then((cards) => {
+    addCards(cards);
+  })
+  .catch((err) => {
+    `Ошибка: ${err}`;
+  });
