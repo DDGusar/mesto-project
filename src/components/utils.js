@@ -3,7 +3,7 @@ import { createCard, cardContainer } from "./card.js";
 const popups = document.querySelectorAll(".popup");
 export function addCard(cardObject) {
   const cardElement = createCard(cardObject);
-  cardContainer.append(cardElement);
+  cardContainer.prepend(cardElement);
 }
 
 function closeEscPopup(evt) {

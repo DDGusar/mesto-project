@@ -1,9 +1,10 @@
-import { openImagePopup } from "./modal.js";
-import { addCard } from "./utils.js";
+import { openImagePopup, cardDeletePopup } from "./modal.js";
+import { addCard, openPopup } from "./utils.js";
 import { myProfile } from "./userInfo.js";
-import { deleteCard, putLike, deleteLike } from "./api.js";
+import { putLike, deleteLike } from "./api.js";
 export const cardContainer = document.querySelector(".cards");
 const cardTemplate = document.querySelector("#card-template").content;
+export let deleteCardObj = {};
 
 function toggleLike(heart, counter, id) {
   if (heart.classList.contains("card__heart_active")) {
@@ -22,8 +23,9 @@ export function removeLike(elem) {
   elem.classList.remove("card__heart_active");
 }
 function removeCard(cardElement, id) {
-  cardElement.remove();
-  deleteCard(id);
+  deleteCardObj.element = cardElement;
+  deleteCardObj.id = id;
+  openPopup(cardDeletePopup);
 }
 export function createCard(cardObject) {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
@@ -63,6 +65,7 @@ export function createCard(cardObject) {
 }
 
 export function addCards(cards) {
+  cards.reverse();
   cards.forEach((element) => {
     addCard(element);
   });

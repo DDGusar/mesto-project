@@ -1,8 +1,9 @@
 import { openPopup, closePopup } from "./utils.js";
 import { toggleButtonState } from "./validate.js";
-import { addCard, renderLoading } from "./utils.js";
+import { renderLoading } from "./utils.js";
 import { setUserInfo, setAvatar } from "./userInfo.js";
-import { postCard, saveProfileInfo, saveAvatar } from "./api.js";
+import { postCard, saveProfileInfo, saveAvatar, deleteCard } from "./api.js";
+import { deleteCardObj } from "./card.js";
 
 export const container = document.querySelector(".page");
 const profile = container.querySelector(".profile");
@@ -10,8 +11,10 @@ export const profilePopup = container.querySelector(".profile-popup");
 export const cardPopup = container.querySelector(".card-popup");
 export const imagePopup = container.querySelector(".image-popup");
 export const avatarPopup = container.querySelector(".avatar-popup");
+export const cardDeletePopup = container.querySelector(".delete-card-popup");
 
 export const formAddCard = cardPopup.querySelector(".popup__form");
+export const formDeleteCard = cardDeletePopup.querySelector(".popup__form");
 
 const picImgPopup = imagePopup.querySelector(".popup__image");
 export const formProfileEdit = profilePopup.querySelector(".popup__form");
@@ -40,6 +43,8 @@ export const avatarSubmitBtn = avatarPopup.querySelector(".popup__button");
 export const avatarInput = avatarPopup.querySelector(
   "input[name = avatar-source]"
 );
+export const deleteCardCloseBtn =
+  cardDeletePopup.querySelector(".popup__cross");
 const cardCaption = cardPopup.querySelector("input[name = card-title]");
 const cardImage = cardPopup.querySelector("input[name = img-source]");
 const imageCaption = imagePopup.querySelector(".popup__caption");
@@ -58,7 +63,6 @@ export function handleProfileFormSubmit(evt) {
 }
 export function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  // addCard(cardCaption.value, cardImage.value);
   renderLoading(cardSubmitBtn, cardSubmitBtn.textContent, true);
   postCard(cardCaption.value, cardImage.value);
   const inputList = Array.from(formAddCard.querySelectorAll(".popup__text"));
@@ -75,6 +79,12 @@ export function handleAvatarFormSubmit(evt) {
   renderLoading(avatarSubmitBtn, avatarSubmitBtn.textContent, true);
   saveAvatar(avatarInput.value);
   closePopup(avatarPopup);
+}
+export function handleDeleteCardFormSubmit(evt) {
+  evt.preventDefault();
+  deleteCardObj.element.remove();
+  deleteCard(deleteCardObj.id);
+  closePopup(cardDeletePopup);
 }
 export function openImagePopup(caption, link) {
   picImgPopup.src = link;
