@@ -6,10 +6,11 @@ import { postCard, saveProfileInfo, saveAvatar, deleteCard } from "./api.js";
 import { deleteCardObj } from "./card.js";
 
 export const container = document.querySelector(".page");
+export const popups = document.querySelectorAll(".popup");
 const profile = container.querySelector(".profile");
 export const profilePopup = container.querySelector(".profile-popup");
 export const cardPopup = container.querySelector(".card-popup");
-export const imagePopup = container.querySelector(".image-popup");
+const imagePopup = container.querySelector(".image-popup");
 export const avatarPopup = container.querySelector(".avatar-popup");
 export const cardDeletePopup = container.querySelector(".delete-card-popup");
 
@@ -32,19 +33,13 @@ export const profileAvatarEditBtn = profile.querySelector(
   ".profile__avatar-btn"
 );
 export const profileAvatar = profile.querySelector(".profile__avatar");
-export const profileCloseBtn = profilePopup.querySelector(".popup__cross");
 export const profileSubmitBtn = profilePopup.querySelector(".popup__button");
-export const cardCloseBtn = cardPopup.querySelector(".popup__cross");
 export const cardSubmitBtn = cardPopup.querySelector(".popup__button");
-export const imageCloseBtn = imagePopup.querySelector(".popup__cross");
 export const formAvatarEdit = avatarPopup.querySelector(".popup__form");
-export const avatarCloseBtn = avatarPopup.querySelector(".popup__cross");
 export const avatarSubmitBtn = avatarPopup.querySelector(".popup__button");
 export const avatarInput = avatarPopup.querySelector(
   "input[name = avatar-source]"
 );
-export const deleteCardCloseBtn =
-  cardDeletePopup.querySelector(".popup__cross");
 const cardCaption = cardPopup.querySelector("input[name = card-title]");
 const cardImage = cardPopup.querySelector("input[name = img-source]");
 const imageCaption = imagePopup.querySelector(".popup__caption");
