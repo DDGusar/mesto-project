@@ -69,17 +69,11 @@ enableValidation({
   errorClass: "popup__text-error_active",
 });
 
-initUserInfo()
-  .then((profileInfo) => {
+Promise.all([initUserInfo(), getInitialCards()])
+  .then(([profileInfo, cards]) => {
     setUserInfo(profileInfo.name, profileInfo.about);
     setAvatar(profileInfo.avatar);
     setMyID(profileInfo);
-  })
-  .catch((err) => {
-    `Ошибка: ${err}`;
-  });
-getInitialCards()
-  .then((cards) => {
     addCards(cards);
   })
   .catch((err) => {

@@ -56,10 +56,12 @@ export function openProfilePopup() {
 
 export function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  setUserInfo(nameInput.value, jobInput.value);
   renderLoading(profileSubmitBtn, profileSubmitBtn.textContent, true);
   saveProfileInfo(nameInput.value, jobInput.value)
-    .then(closePopup(profilePopup))
+    .then(() => {
+      setUserInfo(nameInput.value, jobInput.value);
+      closePopup(profilePopup);
+    })
     .catch((err) => {
       `Ошибка: ${err}`;
     })
@@ -76,13 +78,17 @@ export function handleCardFormSubmit(evt) {
     .then((res) => {
       addCard(res);
     })
-    .then(formAddCard.reset())
-    .then(
+    .then(() => {
+      formAddCard.reset();
+    })
+    .then(() => {
       toggleButtonState(inputList, buttonElement, {
         inactiveButtonClass: "popup__button_inactive",
-      })
-    )
-    .then(closePopup(cardPopup))
+      });
+    })
+    .then(() => {
+      closePopup(cardPopup);
+    })
     .catch((err) => {
       `Ошибка: ${err}`;
     })
@@ -92,10 +98,13 @@ export function handleCardFormSubmit(evt) {
 }
 export function handleAvatarFormSubmit(evt) {
   evt.preventDefault();
-  setAvatar(avatarInput.value);
   renderLoading(avatarSubmitBtn, avatarSubmitBtn.textContent, true);
   saveAvatar(avatarInput.value)
-    .then(closePopup(avatarPopup))
+    .then(() => {
+      setAvatar(avatarInput.value);
+      closePopup(avatarPopup);
+      formAvatarEdit.reset();
+    })
     .catch((err) => {
       `Ошибка: ${err}`;
     })
@@ -105,9 +114,11 @@ export function handleAvatarFormSubmit(evt) {
 }
 export function handleDeleteCardFormSubmit(evt) {
   evt.preventDefault();
-  deleteCardObj.element.remove();
   deleteCard(deleteCardObj.id)
-    .then(closePopup(cardDeletePopup))
+    .then(() => {
+      deleteCardObj.element.remove();
+      closePopup(cardDeletePopup);
+    })
     .catch((err) => {
       `Ошибка: ${err}`;
     });
