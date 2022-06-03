@@ -1,6 +1,5 @@
 import { createCard, cardContainer } from "./card.js";
 
-const popups = document.querySelectorAll(".popup");
 export function addCard(cardObject) {
   const cardElement = createCard(cardObject);
   cardContainer.prepend(cardElement);
@@ -27,11 +26,3 @@ export function renderLoading(element, btnText, onLoad) {
     element.textContent = btnText;
   }
 }
-
-popups.forEach(function (item) {
-  item.addEventListener("click", function (evt) {
-    if (evt.target.classList.contains("popup")) {
-      closePopup(evt.target);
-    }
-  });
-});

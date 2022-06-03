@@ -6,8 +6,6 @@ import {
   openProfilePopup,
   profilePopup,
   cardPopup,
-  imagePopup,
-  cardDeletePopup,
   avatarPopup,
   formAddCard,
   formProfileEdit,
@@ -15,16 +13,12 @@ import {
   formDeleteCard,
   profileEditBtn,
   profileAddBtn,
-  profileCloseBtn,
   profileAvatarEditBtn,
-  cardCloseBtn,
-  deleteCardCloseBtn,
-  imageCloseBtn,
-  avatarCloseBtn,
   handleProfileFormSubmit,
   handleCardFormSubmit,
   handleAvatarFormSubmit,
   handleDeleteCardFormSubmit,
+  popups,
 } from "./modal.js";
 
 import { enableValidation } from "./validate.js";
@@ -40,21 +34,18 @@ profileAddBtn.addEventListener("click", function () {
 profileAvatarEditBtn.addEventListener("click", function () {
   openPopup(avatarPopup);
 });
-profileCloseBtn.addEventListener("click", function () {
-  closePopup(profilePopup);
+
+popups.forEach((popup) => {
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("popup_opened")) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains("popup__cross")) {
+      closePopup(popup);
+    }
+  });
 });
-cardCloseBtn.addEventListener("click", function () {
-  closePopup(cardPopup);
-});
-avatarCloseBtn.addEventListener("click", function () {
-  closePopup(avatarPopup);
-});
-imageCloseBtn.addEventListener("click", function () {
-  closePopup(imagePopup);
-});
-deleteCardCloseBtn.addEventListener("click", function () {
-  closePopup(cardDeletePopup);
-});
+
 formProfileEdit.addEventListener("submit", handleProfileFormSubmit);
 formAddCard.addEventListener("submit", handleCardFormSubmit);
 formAvatarEdit.addEventListener("submit", handleAvatarFormSubmit);
